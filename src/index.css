@@ -34,10 +34,9 @@
   padding: 20px;
 }
 
-* blog previews / list */
+/* blog previews list */
 
 .blog-preview {
-  background-color: green;
   padding: 10px 16px;
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
@@ -49,6 +48,6 @@
 .blog-preview h2 {
   font-size: 20px;
   color: #f1356d;
-  margin-bottom: 2px;
-  /* background-color: green; */
+  margin-bottom: 8px;
+
 }
