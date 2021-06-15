@@ -1,15 +1,40 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario')
+    
+    const [ispending, setIsPending] = useState(false)
+    const history = useHistory();
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+     
+        setIsPending(true);
+        const blog = { title, body, author };
+        console.log(blog);
+
+        fetch('http://localhost:8000/blogs/', {
+            method: "post",
+            headers: {'Content-Type': 'application/json'},
+            body : JSON.stringify(blog)
+        }).then(() => {
+            console.log('New Blog Added');
+            setIsPending(false);
+            // history.go(-2);
+            // history.push('/Blogs/:id')
+            history.push('/')
+        })
+
+    }
     return ( 
  
         <div className="create">
             <h3>Add a New Blog</h3>
-            <form>
+            <form onSubmit = { handleSubmit }>
                 <label>Blog Title:</label> 
                 <input 
                     type="text"
@@ -23,7 +48,7 @@ const Create = () => {
                     value = {body}
                     onChange = {(e) => setBody(e.target.value)}
                 ></textarea>
-                <lable>Blog Author:</lable>
+                <label>Blog Author:</label>
                 <select
                     value={ author }
                     onChange= {(e) => setAuthor(e.target.value)}
@@ -31,12 +56,8 @@ const Create = () => {
                     <option>Mario</option>
                     <option>yoshi</option>
                 </select>
-                <button>Save Blog</button>
-                <h5>{ title }</h5>
-                <p>{ body }</p>
-                <i>{ author }</i>
-
-
+                {!ispending && <button>Save Blog</button> }
+                {ispending && <button disabled >Saving Blog...</button> }
             </form>
         </div>
 
