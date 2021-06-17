@@ -17,7 +17,7 @@ const Create = () => {
         const blog = { title, body, author };
         console.log(blog);
 
-        fetch('http://localhost:8000/blogs/', {
+        fetch('https://my-json-server.typicode.com/praveen-malviya/fake-rest-api/blogs/', {
             method: "post",
             headers: {'Content-Type': 'application/json'},
             body : JSON.stringify(blog)
