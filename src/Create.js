@@ -22,6 +22,7 @@ const Create = () => {
             headers: {'Content-Type': 'application/json'},
             body : JSON.stringify(blog)
         }).then(() => {
+            alert("For Online json-server Changes aren't persisted between calls.. Check in console for successful API call");
             console.log('New Blog Added');
             setIsPending(false);
             // history.go(-2);

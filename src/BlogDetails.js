@@ -12,8 +12,9 @@ const BlogDetails = () => {
         fetch('https://my-json-server.typicode.com/praveen-malviya/fake-rest-api/blogs/'+id, {
             method: 'DELETE'
         }).then(() =>{
+            alert("For Online json-server Changes aren't persisted between calls.. Check in console for successful API call");
             console.log('Blog Deleted');
-            history.push('/')
+            history.push('/');
         })
     }
 
