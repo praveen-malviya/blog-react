@@ -4,15 +4,17 @@ import useFetch from "./useFetch"
 const BlogDetails = () => {
 
     const { id } = useParams();
-    const { data: blog, error, isPending } = useFetch('http://localhost:8000/blogs/'+ id);
+    const { data: blog, error, isPending } = useFetch('https://my-json-server.typicode.com/praveen-malviya/fake-rest-api/blogs/'+ id);
 
     const history = useHistory();
     const handleDelete= () => {
 
-        fetch('http://localhost:8000/blogs/'+id, {
+        fetch('https://my-json-server.typicode.com/praveen-malviya/fake-rest-api/blogs/'+id, {
             method: 'DELETE'
         }).then(() =>{
-            history.push('/')
+            alert("For Online json-server Changes aren't persisted between calls.. Check in console for successful API call");
+            console.log('Blog Deleted');
+            history.push('/');
         })
     }
 
